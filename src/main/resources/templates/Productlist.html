@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.2/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/5.15.4/css/all.css}"/>
+    <script th:src="@{/webjars/jquery/3.6.3/jquery.min.js}"></script>
+
+    <link rel="stylesheet" th:href="@{/css/product.css}"/>
+
+    <style>
+        body {
+            font-family: Times New Roman, sans-serif;
+        }
+        h5 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #eae7e7;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #c03ed9;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .add-button {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .center-content {
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex !important;
+            justify-content: center !important; /* Căn giữa nội dung theo chiều ngang */
+            align-items: center !important;
+            height: 70vh !important; /* Chiều cao toàn màn hình */
+            flex-direction: column !important; /* Đặt các phần tử theo chiều dọc */
+        }
+    </style>
+</head>
+<body>
+<div th:include="Menu.html"></div>
+<div class="center-content">
+    <h5>Product List</h5>
+    <form action="/admin/product-add" method="get">
+        <div class="add-button">
+            <button type="submit" class="btn btn-primary">thêm mới</button>
+        </div>
+    <table>
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Mã loại sản phẩm</th>
+            <th>Tên sản phẩm</th>
+            <th>Số lượng</th>
+            <th>Giá nhập</th>
+            <th>Giá bán</th>
+            <th>Giá khuyến mãi</th>
+            <th>Hình ảnh</th>
+            <th>Mô tả</th>
+            <th>Ngày nhập</th>
+            <th>Sửa</th>
+            <th>Xoá</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product : ${products}">
+            <td th:text="${product.id}"></td>
+<!--            <td>-->
+<!--                <select class="form-control" name="productcode" th:value="${product.productCode}">-->
+<!--                    <option value="">Chọn mã sản phẩm</option>-->
+            <td th:text="${product.productCode}"></td>
+<!--                    <th:block th:each="adproductype : ${adproductypes}">-->
+<!--                        <option th:value="${adproductype.productcode}" th:text="${adproductype.productcode}"></option>-->
+<!--                    </th:block>-->
+<!--                </select>-->
+<!--            </td>-->
+            <td th:text="${product.productName}"></td>
+            <td th:text="${product.quantity}"></td>
+            <td th:text="${product.importprice}"></td>
+            <td th:text="${product.price}+ 'VND'" ></td>
+            <td th:text="${product.priceSale}+ '%'"></td>
+<!--            <td><img th:src="@{${product.image}}" alt="Hình ảnh sản phẩm" width="100"></td>-->
+            <td><img th:src="${'/image/' + product.image}" th:alt="${product.image}" th:title="${product.productName}" width="60"></td>
+            <td th:text="${product.description}"></td>
+            <td th:text="${#dates.format(product.importedDate, 'dd/MM/yyyy')}"></td>
+            <td><a th:href="@{/admin/product-edit/{id}(id=${product.id})}" class="btn btn-danger btn-sm">Sửa</a></td>
+            <td><a th:href="@{/admin/product-delete/{id}(id=${product.id})}" class="btn btn-danger btn-sm">Delete</a></td>
+        </tr>
+        </tbody>
+    </table>
+    </form>
+</div>
+</body>
+</html>

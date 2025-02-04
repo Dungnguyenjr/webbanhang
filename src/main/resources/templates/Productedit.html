@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sửa Thông Tin Sản Phẩm</title>
+    <link rel="stylesheet" href="/webjars/bootstrap/5.2.2/css/bootstrap.min.css"/>
+    <script src="/webjars/jquery/3.6.3/jquery.min.js"></script>
+    <style>
+        body {
+            font-family: Times New Roman, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+        h5 {
+            text-align: center;
+            color: #333;
+        }
+        .form-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 700px;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+        .form-label {
+            font-size: 0.9rem;
+        }
+        .form-control-sm {
+            font-size: 0.9rem;
+        }
+        .button {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+<div class="form-container">
+    <h5>Sửa Thông Tin Sản Phẩm</h5>
+    <form action="/admin/product-update" method="post" enctype="multipart/form-data">
+
+        <div class="mb-3">
+            <input type="hidden" readonly name="id" id="id" class="form-control form-control-sm"
+                   th:value="${product.id}" required>
+        </div>
+
+        <div class="mb-3">
+            <input type="hidden" name="productCode" id="productCode" class="form-control form-control-sm"
+                   th:value="${product.productCode}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="productName" class="form-label">Tên Sản Phẩm</label>
+            <input type="text" name="productName" id="productName" class="form-control form-control-sm"
+                   th:value="${product.productName}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="quantity" class="form-label">Số Lượng</label>
+            <input type="number" name="quantity" id="quantity" class="form-control form-control-sm"
+                   th:value="${product.quantity}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="importprice" class="form-label">Giá Nhập</label>
+            <input type="number" name="importprice" id="importprice" class="form-control form-control-sm"
+                   th:value="${product.importprice}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="price" class="form-label">Giá Bán</label>
+            <input type="number" name="price" id="price" class="form-control form-control-sm"
+                   th:value="${product.price}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="priceSale" class="form-label">Giá Khuyến Mãi</label>
+            <input type="number" name="priceSale" id="priceSale" class="form-control form-control-sm"
+                   th:value="${product.priceSale}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="file">Hình ảnh:</label><br>
+            <input type="file" id="file" name="image" accept="image/*" required><br><br>
+            <img th:src="${'/image/' + product.image}" width="50">
+        </div>
+
+        <div class="mb-3">
+            <label for="description" class="form-label">Mô Tả Chi Tiết</label>
+            <input type="text" name="description" id="description" class="form-control form-control-sm"
+                   th:value="${product.description}" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="importedDate" class="form-label">Ngày Nhập Kho</label>
+            <input type="date" name="importedDate" id="importedDate" class="form-control form-control-sm"
+                   th:value="${product.importedDate}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Cập Nhật</button>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+
+    <link rel="stylesheet" href="/css/csscart.css"/>
+</head>
+<body>
+<div th:include="MenuUser.html"></div>
+<div class="container">
+    <h1>Shopping Cart</h1>
+
+    <!-- Giỏ hàng (hiển thị sản phẩm) -->
+    <form action="/updateCart" method="POST">
+        <div th:each="product : ${productsInCart}" class="cart-item">
+            <img th:src="${'/image/' + product.image}" th:alt="${product.productName}" th:title="${product.productName}" class="product-image">
+            <div class="item-details">
+<!--                <p>Sản phẩm thứ: <span th:text="${product.id}">ID sản phẩm</span></p>-->
+<!--                <h5 th:text="${product.productCode}"></h5>-->
+                <p>Mã sản phẩm: <span th:text="${product.productCode}">ID sản phẩm</span></p>
+                <p><strong>Tên sản phẩm:</strong> <span th:text="${product.productName}"></span></p>
+                <p><strong>Giá bán:</strong> <span th:text="${product.price}"></span> VND</p>
+                <p class="total-price">
+                    Tổng tiền:
+                    <span class="old-price" th:text="${product.price * product.quantity}"></span>
+                    VNĐ
+                </p>
+                <p class="total-price">Tổng tiền:
+                    <span th:text="${(product.price * product.quantity) * (1 - product.priceSale / 100.0)}"></span> VNĐ
+                </p>
+
+
+
+                <!-- Cập nhật số lượng -->
+                <div class="quantity">
+                    <p>Số lượng:
+                        <input type="number" name="quantity[${product.id}]" th:value="${product.quantity}" min="1" style="width: 50px;">
+                    </p>
+                </div>
+            </div>
+            <div class="button-group">
+                <!-- Xóa sản phẩm khỏi giỏ hàng -->
+                <button type="button" th:onclick="|window.location.href='/removecart/${product.id}'|">Xoá</button>
+            </div>
+        </div>
+
+        <p class="total">Tổng tiền:
+            <span th:text="${totalPrice}"></span> VNĐ
+        </p>
+        <div class="total">
+            <input type="hidden" name="id" value="{{cartItem.id}}"> <!-- Trường chứa id của sản phẩm -->
+<!--            <input type="submit" name="update" value="Cập nhật giỏ hàng" th:formaction="@{/updatecart/{id}(id=${quantities.id})}">-->
+            <button type="submit" formaction="@{/updatecart/{id}(id=${cartItem.id})}">Cập nhật giỏ hàng</button>
+            <input type="submit" name="order" value="Đặt hàng">
+        </div>
+    </form>
+
+    <!-- Thông báo nếu giỏ hàng trống -->
+    <div class="empty-cart" th:if="${#lists.isEmpty(productsInCart)}">
+        <p>Giỏ hàng của bạn đang trống</p>
+    </div>
+
+    <!-- Voucher Section -->
+    <div class="voucher" th:each="product : ${productsInCart}">
+        <p><strong>Voucher giảm giá:</strong><span th:text="${(product.priceSale + product.priceSale) + '%'}"></span> </p>
+        <a href="javascript:void(0);" th:attr="data-product-code=${product.productCode}" onclick="toggleVoucherDetails(this)">Xem thêm voucher</a>
+        <div class="voucher-details" th:id="'voucherDetails' + ${product.productCode}" style="display: none;">
+            <p>
+                <strong>Voucher giảm giá:</strong><span th:text="${product.priceSale + '%'}"></span>
+                <strong>Cho sản phẩm:</strong><span th:text="${product.productName}"></span>
+            </p>
+        </div>
+    </div>
+
+</div>
+
+<script>
+    // Hiển thị / Ẩn chi tiết voucher
+    function toggleVoucherDetails(element) {
+        var productCode = element.getAttribute("data-product-code");
+        var details = document.getElementById('voucherDetails' + productCode);
+        details.style.display = details.style.display === "none" ? "block" : "none";
+    }
+</script>
+
+
+</body>
+</html>

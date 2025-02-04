@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.2/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/5.15.4/css/all.css}"/>
+    <script th:src="@{/webjars/jquery/3.6.3/jquery.min.js}"></script>
+
+    <link rel="stylesheet" th:href="@{/css/login.css}"/>
+
+</head>
+<body>
+<!--<h2>Sign in/up Form</h2>-->
+<div class="container" id="container">
+    <div class="form-container sign-up-container">
+        <form action="/Register-save" method="post" enctype="multipart/form-data" >
+            <h1>Create Account</h1>
+            <div class="social-container">
+                <a href="https://www.facebook.com/" class="social"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://workspace.google.com/intl/vi/gmail/" class="social"><i class="fab fa-google-plus-g"></i></a>
+                <a href="https://fontawesome.com/icons/linkedin-in" class="social"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <span>or use your email for registration</span>
+            <input type="text" name="username" id="username" placeholder="username"  pattern="[0-9a-zA-Z]{5,}" title="username: anpha and numeric" required  class="form-control">
+            <input type="text" name="password" id="password" placeholder="password"  pattern="[0-9a-zA-Z$]{6,}" title="password: anpha and numeric" required class="form-control">
+            <input type="text" name="email" id="email" placeholder="email"  pattern="^[a-z0-9A-Z.]+@[a-z0-9A-Z.]+.[a-z0-9.]*[a-z]*"   required class="form-control">
+            <input type="text" name="fullName" placeholder="fullName"  pattern="[a-zA-Z]{4,}" id="fullName"  required class="form-control">
+            <input type="file" id="file" name="image" accept="image/*" required>
+            <select name="role" id="role" required class="form-control">
+                <option value="ADMIN">Admin</option>
+                <option value="EMP" selected="selected">Employee</option>
+            </select>
+            <button class="btn btn-success btn-sm">Sign Up</button>
+        </form>
+    </div>
+    <div class="form-container sign-in-container">
+        <form th:action="@{/login}" method="post">
+<!--        <form action="/login" method="post"  >-->
+            <h1>Sign in</h1>
+            <div th:if="${param.error}">
+                <p> Sai tài khoản hoặc mật khẩu</p>
+            </div>
+            <div class="social-container">
+                <a href="https://www.facebook.com/" class="social"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://workspace.google.com/intl/vi/gmail/" class="social"><i class="fab fa-google-plus-g"></i></a>
+                <a href="https://fontawesome.com/icons/linkedin-in" class="social"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <span>or use your account</span>
+            <input type="text" name="username" placeholder="username" required />
+            <input type="password" name="password" placeholder="password" required />
+            <a href="reset-password">Forgot your password?</a>
+            <button type="submit">Sign In</button>
+        </form>
+
+
+
+    </div>
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-left">
+                <h1>Welcome Back!</h1>
+                <p>To stay connected with us please log in</p>
+                <button class="ghost" id="signIn">Sign In</button>
+            </div>
+            <div class="overlay-panel overlay-right">
+                <h1>Hello, Friend!</h1>
+                <p>Welcome to our website register when you do not have an account</p>
+                <button class="ghost" id="signUp">Sign Up</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    const signUpButton = document.getElementById('signUp');
+    const signInButton = document.getElementById('signIn');
+    const container = document.getElementById('container');
+
+    signUpButton.addEventListener('click', () => {
+        container.classList.add("right-panel-active");
+    });
+
+    signInButton.addEventListener('click', () => {
+        container.classList.remove("right-panel-active");
+    });
+</script>
+
+<footer>
+    <p>
+        Created with <i class="fa fa-heart"></i> by
+        <a target="_blank" href="https://florin-pop.com">Florin Pop</a>
+        - Read how I created this and how you can join the challenge
+        <a target="_blank" href="https://www.florin-pop.com/blog/2019/03/double-slider-sign-in-up-form/">here</a>.
+    </p>
+</footer>
+
+</body>
+</html>

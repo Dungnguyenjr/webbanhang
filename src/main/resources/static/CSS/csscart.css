@@ -1,0 +1,182 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    font-weight: bold;
+    margin: 0;
+    padding: 20px;
+}
+
+.container {
+    max-width: 650px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px; /* Thêm góc bo tròn */
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #eaeaea; /* Thêm đường phân cách */
+    padding-bottom: 20px; /* Thêm khoảng cách */
+}
+
+.product-image {
+    width: 150px;
+    height: auto;
+    margin-right: 20px;
+}
+
+.item-details {
+    flex: 1;
+}
+
+.item-details h2 {
+    margin: 0 0 10px;
+    font-size: 18px;
+    color: #333;
+}
+
+.item-details p {
+    margin: 5px 0;
+    color: #666;
+}
+
+.price {
+    font-size: 16px;
+    color: #e74c3c;
+}
+
+.original-price {
+    text-decoration: line-through;
+    color: #999;
+    margin-right: 10px;
+}
+
+.quantity {
+    margin: 10px 0;
+}
+
+.quantity label {
+    margin-right: 10px;
+}
+
+.button-group {
+    margin-top: 10px; /* Thêm khoảng cách cho nhóm nút */
+}
+
+button {
+    padding: 10px 15px;
+    border: none;
+    background-color: #007BFF;
+    color: #fff;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-right: 10px;
+    transition: background-color 0.3s; /* Thêm hiệu ứng chuyển tiếp cho hiệu ứng hover mượt mà */
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+
+.voucher {
+    margin: 20px 0;
+    color: #333;
+}
+
+.voucher a {
+    color: #007BFF;
+    text-decoration: none;
+}
+
+.voucher a:hover {
+    text-decoration: underline;
+}
+
+.total {
+    text-align: right;
+    font-size: 18px;
+    color: #333;
+}
+
+.checkout-btn {
+    background-color: #28a745;
+}
+
+.checkout-btn:hover {
+    background-color: #218838;
+}
+
+/* Thêm kiểu cho bảng */
+table {
+    width: 100%;
+    border-collapse: collapse; /* Gộp các đường viền */
+    margin-top: 20px; /* Thêm khoảng cách trên bảng */
+}
+
+table th, table td {
+    border: 1px solid #eaeaea; /* Đường viền cho ô */
+    padding: 10px; /* Khoảng cách bên trong ô */
+    text-align: left; /* Căn trái cho văn bản */
+}
+
+table th {
+    background-color: #f8f8f8; /* Màu nền cho tiêu đề bảng */
+    color: #333; /* Màu chữ cho tiêu đề bảng */
+}
+.button-group {
+    display: flex; /* Sử dụng flexbox để căn chỉnh các nút nằm ngang */
+    gap: 10px; /* Khoảng cách giữa các nút */
+}
+input, select, textarea {
+    border: 2px solid rgb(62, 219, 219);
+    border-radius: 25px; /* Sử dụng góc bo tròn lớn hơn */
+    padding: 10px 20px; /* Khoảng cách bên trong */
+}
+table {
+    /* width: 10%; */
+    margin-left: auto;
+    margin-right: auto;
+    border-collapse: collapse; /* Gộp viền để không bị chồng */
+    border: 2px solid #000; /* Khung bên ngoài của bảng */
+}
+
+th, td {
+    border: 1px solid #000; /* Viền cho các ô trong bảng */
+    padding: 5px; /* Khoảng cách giữa nội dung và viền */
+    text-align: center; /* Căn giữa nội dung trong các ô */
+}
+
+th {
+    background-color: #f2f2f2; /* Màu nền cho tiêu đề */
+    font-weight: bold;
+}
+
+table, th, td {
+    border: 1px solid black; /* Đặt viền cho bảng, ô tiêu đề và ô dữ liệu */
+}
+
+table {
+    width: 80%; /* Đặt chiều rộng của bảng */
+}
+
+td {
+    padding: 10px;
+    text-align: center;
+}
+ .old-price {
+     text-decoration: line-through; /* Tạo hiệu ứng gạch ngang */
+ }
+
+.cart-item { display: flex; align-items: center; }
+.cart-item img { margin-right: 20px; }
+.item-details { flex: 1; }
+

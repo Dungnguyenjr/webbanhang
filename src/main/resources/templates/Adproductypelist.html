@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mã Loại Sản Phẩm</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.2/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/5.15.4/css/all.css}"/>
+    <script th:src="@{/webjars/jquery/3.6.3/jquery.min.js}"></script>
+    <style>
+        body {
+            font-family: Times New Roman, sans-serif;
+        }
+        h5 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: white;
+        }
+        th, td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #c03ed9;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .add-button {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .center-content {
+
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex !important;
+            justify-content: center !important; /* Căn giữa nội dung theo chiều ngang */
+            align-items: center !important;
+            height: 70vh !important; /* Chiều cao toàn màn hình */
+            flex-direction: column !important; /* Đặt các phần tử theo chiều dọc */
+        }
+    </style>
+</head>
+<body>
+<div th:include="Menu.html"></div>
+<div>
+    <div class="center-content">
+    <h5>Mã loại sản phẩm</h5>
+    <form action="/admin/adproductype-add" method="get">
+        <div class="add-button">
+            <button type="submit" class="btn btn-primary">thêm mới</button>
+        </div>
+            <table>
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Mã sản phẩm</th>
+                    <th>Mô tả</th>
+                    <th>Sửa</th>
+                    <th>Xoá</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="adproductype : ${adproductypes}">
+                    <td th:text="${adproductype.id}"></td>
+                    <td th:text="${adproductype.productcode}"></td>
+                    <td th:text="${adproductype.productdescription}"></td>
+<!--                    <td><a th:href="@{/adproductype-delete/{id} (id=${obj.id})}" class="btn btn-danger btn-sm">Sửa</a></td>-->
+<!--                    <td><a th:href="@{/adproductype-delete/{id} (id=${adproductype.id})}" class="btn btn-danger btn-sm">Delete</a></td>-->
+                    <td><a th:href="@{/admin/adproductype-edit/{id}(id=${adproductype.id})}" class="btn btn-danger btn-sm">Sửa</a></td>
+                    <td><a th:href="@{/admin/adproductype-delete/{id}(id=${adproductype.id})}" class="btn btn-danger btn-sm">Delete</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang chủ</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        /* Các kiểu CSS đã có trước đó */
+        .container {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            min-height: 100vh;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .product-card {
+            border: 2px solid #007BFF;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            margin: 10px;
+            width: 250px;
+            text-align: center;
+        }
+        .product-card h5, .product-card p {
+            margin-bottom: 10px;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .product-image {
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .product-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        .search-bar {
+            margin-right: 10px;
+            width: 360px; /* Giảm chiều rộng */
+            font-size: 14px; /* Giảm kích thước font */
+            padding: 5px; /* Giảm padding */
+        }
+
+        /* Thu nhỏ thẻ select */
+        #productSelect {
+            width: 300px; /* Giảm chiều rộng */
+            font-size: 20px; /* Giảm kích thước font */
+            padding: 5px; /* Giảm padding */
+        }
+
+        .button {
+            display: inline-block;
+            padding: 5px 10px; /* Giảm padding cho nút bấm */
+            font-size: 15px; /* Giảm cỡ chữ */
+            font-weight: bold;
+            color: white;
+            background-color: #007BFF;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px; /* Bo góc nút */
+            margin: 5px;
+        }
+
+        /* Hiệu ứng khi di chuột qua nút bấm */
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<h5>Trang chủ</h5>
+
+<div th:include="MenuUser.html"></div>
+
+<form action="productSelect" method="get">
+    <div class="d-flex justify-content-center mb-4">
+        <label for="productSelect" class="me-2">Chọn Mã Sản Phẩm:</label>
+        <select name="productCode" id="productSelect" class="form-select" onchange="this.form.submit()">
+            <option value="">Chọn sản phẩm</option>
+            <!-- Hiển thị tất cả các sản phẩm và đánh dấu sản phẩm đã chọn -->
+            <option th:each="product : ${products}"
+                    th:value="${product.productCode}"
+                    th:text="${product.productCode}"
+                    th:selected="${product.productCode == productCode}"></option>
+        </select>
+    </div>
+</form>
+
+
+
+<form action="/product-search" method="get" class="d-flex justify-content-center mb-4">
+    <input type="text" name="data" th:value="${data}" class="search-bar form-control" placeholder="Tìm kiếm sản phẩm..." />
+    <button class="btn btn-success" type="submit">Search</button>
+</form>
+
+
+<div class="container">
+    <div th:each="product : ${products}" class="product-card">
+        <h5 th:text="${product.productCode}"></h5>
+        <p>
+            <strong>Hình ảnh</strong><br>
+            <img th:src="${'/image/' + product.image}" th:alt="${product.image}" th:title="${product.productName}" class="product-image">
+        </p>
+        <p><strong>Tên sản phẩm:</strong> <span th:text="${product.productName}"></span></p>
+        <p><strong>Giá bán:</strong> <span th:text="${product.price}+ ' VND'"></span></p>
+        <p><strong>Giá khuyến mãi:</strong> <span th:text="${product.priceSale} + '%'"></span></p>
+
+        <div class="card-actions">
+            <button class="btn btn-primary add-to-cart button"
+                    data-id="${product.productCode}"
+                    data-name="${product.productName}"
+                    data-price="${product.price}"
+                    data-image="${product.image}">
+                Thêm vào giỏ hàng
+            </button>
+            <a th:href="@{'/ProductView/' + ${product.id}}" class="btn btn-secondary button">Xem chi tiết</a>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

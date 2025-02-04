@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kho tồn</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"></script>
+    <style>
+        body {
+            font-family: Times New Roman, sans-serif;
+        }
+        h3 {
+            color: #333;
+
+        }
+
+        .search-bar {
+            margin: 5px;
+            padding: 10px;
+            width: 200px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        form {
+            margin-bottom: 20px;
+        }
+
+        table {
+            width: 80% !important;
+            border-collapse: collapse;
+            margin-top: 20px;
+            background-color: white;
+            margin-bottom: 40px;
+            justify-content: center !important; /* Căn giữa nội dung theo chiều ngang */
+            align-items: center !important;
+            flex-direction: column !important; /* Đặt các phần tử theo chiều dọc */
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        /* Áp dụng kiểu cho các thẻ <th> bên trong <tr> có lớp th */
+        tr.th th { background-color: #c03ed9;
+            color: white;
+        }
+
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .center-content {
+
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex !important;
+            justify-content: center !important; /* Căn giữa nội dung theo chiều ngang */
+            align-items: center !important;
+            height: 50vh !important; /* Chiều cao toàn màn hình */
+            flex-direction: column !important; /* Đặt các phần tử theo chiều dọc */
+        }
+
+
+    </style>
+</head>
+
+<body>
+<div th:include="Menu.html"></div>
+<div class="center-content">
+    <h5>Kho tồn</h5>
+    <form method="get" action="/inventory">
+        <input type="text" name="productName" class="search-bar" placeholder="Tìm kiếm sản phẩm..." />
+        <input type="text" name="productCode" class="search-bar" placeholder="Mã sản phẩm..." />
+        <input type="submit" value="Tìm kiếm" class="btn btn-primary" />
+    </form>
+
+    <table class="table">
+        <thead>
+        <tr class="th">
+            <th>ID sản phẩm</th>
+            <th>Mã sản phẩm</th>
+            <th>Tên sản phẩm</th>
+            <th>Số lượng tồn kho</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="product : ${products}">
+            <td th:text="${product.id}"></td>
+            <td th:text="${product.productCode}"></td>
+            <td th:text="${product.productName}"></td>
+            <td th:text="${product.quantity}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+</body>
+
+</html>

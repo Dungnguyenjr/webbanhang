@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Navbar Example</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            font-family: Times New Roman, sans-serif;
+            background-color: #f8f9fa;
+        }
+
+        .navbar {
+            background-color: #c03ed9; /* Màu nền navbar */
+            border-bottom: 2px solid #dee2e6;
+        }
+
+        .navbar-brand {
+            color: #ffffff;
+            font-size: 1.5rem;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .navbar-brand:hover {
+            color: #f8f9fa;
+            text-decoration: none;
+        }
+
+        .navbar-nav .nav-link {
+            color: #ffffff;
+            font-size: 1rem;
+            padding: 15px 20px;
+            transition: color 0.3s ease, background-color 0.3s ease;
+        }
+
+        .navbar-nav .nav-link:hover {
+            color: #343a40;
+            background-color: #ffffff;
+            border-radius: 5px;
+        }
+
+        .navbar-toggler {
+            background-color: #ffffff;
+        }
+
+        /* Các kiểu flexbox để căn chỉnh */
+        .navbar-nav {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .nav-item {
+            margin-right: 15px;
+        }
+
+        /* Tối ưu cho màn hình nhỏ */
+        @media (max-width: 767px) {
+            .navbar-nav {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-item {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-sm">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#">Logo</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8080/admin/listadproductype">Quản lý loại sản phẩm</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8080/admin/listproduct">Quản lý sản phẩm</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Quản lý khách hàng mua hàng</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8080/admin/listaccount">Quản lý tài khoản khách hàng</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Quản lý đơn hàng</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Báo cáo doanh thu</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="http://localhost:8080/admin/inventory">Kho tồn</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Chương trình khuyến mại</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

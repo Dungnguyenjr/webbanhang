@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script th:src="@{/webjars/jquery/3.6.3/jquery.min.js}"></script>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.2/css/bootstrap.min.css} "/>
+    <script th:src="@{/webjars/bootstrap/5.2.2/js/bootstrap.js}"></script>
+
+    <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.15.4/css/all.css} "/>
+</head>
+<body>
+<div class="container">
+    <div th:insert="Menu.html::Menu"></div>
+
+    <h1>Account add</h1>
+    <form action="/account-save" method="post" >
+        <div>
+            <label for="username">Username</label>
+            <input type="text" name="username" id="username" pattern="[0-9a-zA-Z]{5,}" title="username: anpha and numeric" required  class="form-control">
+        </div>
+        <div>
+            <label for="password">Password</label>
+            <input type="text" name="password" id="password" pattern="[0-9a-zA-Z$]{6,}" title="password: anpha and numeric" required class="form-control">
+        </div>
+        <div class="">
+            <label for="fullName">Full Name</label>
+            <input type="text" name="fullName" pattern="[a-zA-Z]{4,}" id="fullName"  required class="form-control">
+        </div>
+
+
+        <div class="">
+            <label for="email">Email</label>
+            <input type="text" name="email" id="email" pattern="^[a-z0-9A-Z.]+@[a-z0-9A-Z.]+.[a-z0-9.]*[a-z]*"   required class="form-control">
+        </div>
+
+        <div class="">
+            <label for="role">Role</label>
+            <input type="text" name="role" id="role" required   class="form-control">
+        </div>
+
+
+
+        <div class="">
+            <button class="btn btn-success btn-sm">Save</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>

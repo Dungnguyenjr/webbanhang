@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Account Add</title>
+    <script th:src="@{/webjars/jquery/3.6.3/jquery.min.js}"></script>
+    <link th:rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.2/css/bootstrap.min.css} "/>
+    <script th:src="@{/webjars/bootstrap/5.2.2/js/bootstrap.js}"></script>
+
+    <link th:rel="stylesheet" th:href="@{/webjars/font-awesome/5.15.4/css/all.css} "/>
+</head>
+<body>
+<div class="container">
+    <div th:include="MenuUser.html"></div>
+
+    <h5>Account Register Confirm</h5>
+
+    <h5 th:if="${!msg.contains('error')}" th:utext="${msg}" class="text-primary">Msg</h5>
+    <h5 th:if="${msg.contains('error')}" th:utext="${msg}" class="text-danger">Msg</h5>
+</div>
+</body>
+</html>

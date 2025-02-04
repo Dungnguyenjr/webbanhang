@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>EDIT ADPRODUCTYPE</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.2/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/webjars/font-awesome/5.15.4/css/all.css}"/>
+    <script th:src="@{/webjars/jquery/3.6.3/jquery.min.js}"></script>
+    <style>
+        body {
+            font-family: Times New Roman, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        h5 {
+            text-align: center;
+            color: #333;
+        }
+        .form-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 400px;
+        }
+    </style>
+</head>
+<body>
+<div class="form-container">
+    <h5>Chỉnh Sửa Mã Loại Sản Phẩm</h5>
+
+
+    <form action="/admin/adproductype-update" method="post">
+
+    <input type="hidden" name="id" th:value="${adproductype.id}">
+
+        <div class="mb-3">
+            <label for="productCode" class="form-label">Mã Sản Phẩm</label>
+            <input type="text" name="productCode" id="productCode" class="form-control form-control-sm"
+                   th:value="${adproductype.productcode}" required>
+        </div>
+        <div class="mb-3">
+            <label for="productDescription" class="form-label">Mô Tả</label>
+            <input type="text" name="productDescription" id="productDescription" class="form-control form-control-sm"
+                   th:value="${adproductype.productdescription}" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Cập Nhật</button>
+    </form>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trang chủ</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.css"/>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        /* Container căn giữa và cho phép nội dung thu nhỏ */
+        .container {
+            display: flex;
+            justify-content: center; /* Căn giữa theo chiều ngang */
+            align-items: flex-start; /* Căn theo chiều dọc ở đầu */
+            min-height: 100vh; /* Đảm bảo container có chiều cao tối thiểu bằng chiều cao của viewport */
+            flex-wrap: wrap; /* Cho phép các thẻ sản phẩm tự động xuống dòng nếu cần */
+            gap: 10px; /* Giảm khoảng cách giữa các thẻ sản phẩm */
+        }
+
+        /* Định kiểu cho thẻ sản phẩm, thêm bo góc và bóng đổ */
+        .product-card {
+            border: 2px solid #007BFF;
+            border-radius: 10px; /* Bo góc thẻ */
+            padding: 20px; /* Tăng không gian bên trong thẻ */
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Bóng đổ */
+            margin: 10px; /* Khoảng cách giữa các thẻ sản phẩm */
+            width: 250px; /* Đặt chiều rộng cố định cho thẻ sản phẩm */
+            text-align: center; /* Căn giữa nội dung trong thẻ sản phẩm */
+        }
+
+        /* Giảm khoảng cách giữa các thành phần trong thẻ sản phẩm */
+        .product-card h5, .product-card p {
+            margin-bottom: 10px; /* Giảm khoảng cách dưới mỗi thẻ h5 và p */
+        }
+
+        /* Hiệu ứng khi di chuột qua thẻ sản phẩm */
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2); /* Bóng đổ khi hover */
+            transition: transform 0.3s, box-shadow 0.3s; /* Hiệu ứng chuyển động */
+        }
+
+        /* Định kiểu cho hình ảnh sản phẩm */
+        .product img {
+            width: 100px;
+            height: auto;
+            display: block;
+            margin: 0 auto; /* Căn giữa hình ảnh trong thẻ */
+        }
+
+        /* Định kiểu cho nút bấm */
+        .button {
+            display: inline-block;
+            padding: 5px 10px; /* Giảm padding cho nút bấm */
+            font-size: 12px; /* Giảm cỡ chữ */
+            font-weight: bold;
+            color: white;
+            background-color: #007BFF;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px; /* Bo góc nút */
+            margin: 5px;;
+        }
+
+        /* Hiệu ứng khi di chuột qua nút bấm */
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Định kiểu cho container hành động trong thẻ sản phẩm */
+        .card-actions {
+            display: flex;
+            justify-content: center; /* Căn giữa theo chiều ngang */
+            align-items: center;     /* Căn giữa theo chiều dọc */
+            text-align: center; /* Căn giữa theo chiều ngang */
+        }
+        /* Mẫu duy nhất cho tất cả ảnh */
+        .product-image {
+            width: 150px; /* Đặt chiều rộng cố định */
+            height: 150px; /* Đặt chiều cao cố định */
+            object-fit: cover; /* Cắt ảnh sao cho nó phù hợp trong khung mà không bị méo */
+            border-radius: 8px; /* Bo góc của ảnh */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Hiệu ứng khi hover */
+        }
+
+        /* Hiệu ứng hover khi di chuột vào ảnh */
+        .product-image:hover {
+            transform: scale(1.05); /* Phóng to ảnh khi hover */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Thêm bóng đổ khi hover */
+        }
+
+
+    </style>
+</head>
+<body>
+
+<h5>Trang chủ</h5>
+
+<div th:include="MenuUser.html"></div>
+
+
+<div class="container">
+
+    <div th:each="product : ${products}" class="product-card">
+        <h5 th:text="${product.productCode}"></h5>
+        <p>
+            <strong>Hình ảnh</strong><br>
+            <img th:src="${'/image/' + product.image}" th:alt="${product.image}" th:title="${product.productName}" class="product-image">
+        </p>
+        <p><strong>Tên sản phẩm:</strong> <span th:text="${product.productName}"></span></p>
+        <p><strong>Giá bán:</strong> <span th:text="${product.price}"></span></p>
+        <p><strong>Giá khuyến mãi:</strong> <span th:text="${product.}priceSale + '%'"></span></p>
+        <p><strong>Mô tả sản phẩm:</strong> <span th:text="${product.description}"></span></p>
+
+
+        <div class="card-actions">
+            <button class="btn btn-primary add-to-cart button"
+                    data-id="${product.productCode}"
+                    data-name="${product.productName}"
+                    data-price="${product.price}"
+                    data-image="${product.image}">
+                Thêm vào giỏ hàng
+            </button>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

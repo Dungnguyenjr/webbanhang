@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thêm Mã Loại Sản Phẩm</title>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/5.2.2/css/bootstrap.min.css}"/>
+    <script th:src="@{/webjars/jquery/3.6.3/jquery.min.js}"></script>
+    <style>
+        body {
+            font-family: Times New Roman, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh; /* Sử dụng toàn bộ chiều cao màn hình */
+            overflow: hidden;
+        }
+        h5 {
+            text-align: center;
+            color: #333;
+        }
+        .form-container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 700px; /* Đặt chiều rộng form */
+            max-height: 80vh; /* Giới hạn chiều cao form */
+            overflow-y: auto; /* Cho phép cuộn khi nội dung vượt quá chiều cao */
+        }
+        .form-label {
+            font-size: 0.9rem; /* Giảm kích thước font label */
+        }
+        .form-control-sm {
+            font-size: 0.9rem; /* Giảm kích thước font input */
+        }
+        .button {
+            margin-top: 20px;  /* Đặt khoảng cách phía trên cho nút */
+            display: flex;
+            justify-content: center;  /* Căn giữa theo chiều ngang */
+            align-items: center;  /* Căn giữa theo chiều dọc */
+        }
+
+    </style>
+</head>
+<body>
+<div class="form-container">
+    <h5>Thêm Sản Phẩm</h5>
+    <form action="/admin/product-save" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="productCode" class="form-label">Mã Sản Phẩm</label>
+            <select class="form-control form-control-sm" name="productCode">
+                <option value="">Chọn mã sản phẩm</option>
+                <th:block th:each="adproductype : ${adproductypes}">
+                    <option th:value="${adproductype.productcode}" th:text="${adproductype.productcode}"></option>
+                </th:block>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="productName" class="form-label">Tên Sản Phẩm</label>
+            <input type="text" name="productName" id="productName" class="form-control form-control-sm">
+        </div>
+        <div class="mb-3">
+            <label for="quantity" class="form-label">Số Lượng</label>
+            <input type="number" name="quantity" id="quantity" class="form-control form-control-sm">
+        </div>
+        <div class="mb-3">
+            <label for="importprice" class="form-label">Giá Nhập</label>
+            <input type="number" name="importprice" id="importprice" class="form-control form-control-sm">
+        </div>
+        <div class="mb-3">
+            <label for="price" class="form-label">Giá Bán</label>
+            <input type="number" name="price" id="price" class="form-control form-control-sm">
+        </div>
+<!--        <div class="mb-3">-->
+<!--            <label for="productDescription" class="form-label">Mô Tả Sản Phẩm</label>-->
+<!--            <input type="text" name="productDescription" id="productDescription" class="form-control form-control-sm">-->
+<!--        </div>-->
+        <div class="mb-3">
+            <label for="priceSale" class="form-label">Giá Khuyến Mãi</label>
+            <input type="number" name="priceSale" id="priceSale" class="form-control form-control-sm">
+        </div>
+        <div class="mb-3">
+            <label for="file">Hình ảnh:</label><br>
+            <input type="file" id="file" name="image" accept="image/*" required><br><br>
+
+        </div>
+
+        <div class="mb-3">
+            <label for="description" class="form-label">Mô Tả Khác</label>
+            <input type="text" name="description" id="description" class="form-control form-control-sm">
+        </div>
+        <div class="mb-3">
+            <label for="importedDate" class="form-label">Ngày Nhập</label>
+            <input type="date" name="importedDate" id="importedDate" class="form-control form-control-sm">
+        </div>
+        <div class="button">
+            <button type="submit" class="btn btn-primary">Thêm mới</button>
+        </div>
+    </form>
+</div>
+</body>
+</html>
